@@ -18,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="${linkTo[IndexController].index}">Blank Project</a>
+                <a class="navbar-brand" href="${linkTo[LoginController].index}">Blank Project</a>
             </div>
             
             <ul class="nav navbar-right top-nav">
@@ -47,14 +47,9 @@
                         </li>
                     </ul>
                 </div>
-                <!-- /.sidebar-collapse -->
             </div>
-			<%-- <ul class="nav nav-tabs">
-				<li><a href="${linkTo[IndexController].index}">Home</a>
-			</ul> --%>
 		</nav>
 		
-		<!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
