@@ -1,11 +1,6 @@
 			</main>
 		</div>
-                <!-- /.row -->
-        </div>
-            <!-- /.container-fluid -->
-    </div>
-        
-		</div>		
+	</div>		
 	<!-- jQuery -->
     <script src="/blank/js/jquery.min.js"></script>
 
