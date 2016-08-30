@@ -7,17 +7,23 @@
             <div class="col-md-12">
                 <h2>Usuário</h2>
 				<form action="${linkTo[UsuarioController].adiciona(null)}" method="post">
-						
-						<label for="nome">Nome:</label>
-						<input type="text" name="usuario.nome" id="nome" class="form-control" value="${usuario.nome}"/>
-						<br/>
-						<label for="login">Login:</label>
-						<input type="text" name="usuario.login" id="login" class="form-control" value="${usuario.login}"/>
-						<br/>
-						<div>
-                       		<button type="submit" class="btn btn-default" >Salvar</button>
-                       	</div>
-						
+					<div class="col-lg-8 col-md-8">
+                        <div class="form-group">
+							<label for="nome">Nome:</label>
+							<input type="text" name="usuario.nome" id="nome" class="form-control" value="${usuario.nome}"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                        <div class="form-group">
+							<label for="login">Login:</label>
+							<input type="text" name="usuario.login" id="login" class="form-control" value="${usuario.login}"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                        <div class="form-group">
+                       		<button type="submit" class="btn btn-primary" >Salvar</button>
+                        </div>
+                    </div>
 				</form>
             </div>
         </div>

@@ -8,7 +8,7 @@
         	<h2>Lista de Usuários</h2>
 			<form id="form" action="<c:url value="/usuario/form" />" method="post">
 				<p>
-        			<button type="submit" class="btn btn-default">Novo Usuario</button>
+        			<button type="submit" class="btn btn-primary">Novo Usuario</button>
         		</p>
         	</form>
         </div>
@@ -24,7 +24,7 @@
                         	<table class="table table-striped table-bordered table-hover">
                             	<thead>
                             		<tr>
-                            			<th>#</th>
+                            			<th></th>
                                         <th>Nome</th>
                                         <th>Login</th>
                                     </tr>

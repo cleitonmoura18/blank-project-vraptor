@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Blank Project</title>
 		<link href="<c:url value='/css/bootstrap.css'/>" rel="stylesheet"/>
 		<link href="<c:url value='/css/font-awesome.css'/>" rel="stylesheet"/>
@@ -35,14 +37,14 @@
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
-					<li >
-                        <a href="index.html" ><i class="fa fa-desktop "></i>Dashboard <span class="badge">Included</span></a>
+					<li class="active-link">
+                        <a href="${linkTo[LoginController].index}" ><i class="fa fa-desktop "></i>Dashboard </a>
                     </li>
                     <li>
-                        <a href="ui.html"><i class="fa fa-table "></i>UI Elements  <span class="badge">Included</span></a>
+                        <a href="${linkTo[UsuarioController].form}"><i class="fa fa-table "></i>Usuário </a>
                     </li>
-                    <li class="active-link">
-                        <a href="blank.html"><i class="fa fa-edit "></i>Blank Page  <span class="badge">Included</span></a>
+                    <li >
+                        <a href="${linkTo[UsuarioController].lista}"><i class="fa fa-edit "></i>Blank Page </a>
                     </li>
 					<li>
                         <a href="#"><i class="fa fa-qrcode "></i>My Link One</a>
@@ -65,5 +67,5 @@
         </nav>
 		
         <div id="page-wrapper">
-        	<main>
+        	<!-- <main> -->
         	<!-- Conteudo -->
