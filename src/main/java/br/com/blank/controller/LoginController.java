@@ -54,4 +54,24 @@ public class LoginController {
 	public void setUsuarioLogado(UsuarioLogado usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
 	}
+
+	public UsuarioDao getUsuarioDao() {
+		return usuarioDao;
+	}
+
+	public void setUsuarioDao(UsuarioDao usuarioDao) {
+		this.usuarioDao = usuarioDao;
+	}
+
+	public Validator getValidator() {
+		return validator;
+	}
+
+	public void setValidator(Validator validator) {
+		this.validator = validator;
+	}
+
+	public Result getResult() {
+		return result;
+	}
 }
