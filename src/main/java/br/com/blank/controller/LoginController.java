@@ -2,28 +2,35 @@ package br.com.blank.controller;
 
 import javax.inject.Inject;
 
+import br.com.blank.dao.UsuarioDao;
 import br.com.blank.model.UsuarioLogado;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.validator.Validator;
 
 @Controller
 public class LoginController {
 
 	private final Result result;
 	private UsuarioLogado usuarioLogado;
+	private UsuarioDao usuarioDao;
+	private Validator validator;
 
 	/**
 	 * @deprecated CDI eyes only
 	 */
 	protected LoginController() {
-		this(null);
+		this(null, null, null, null);
 	}
 	
 	@Inject
-	public LoginController(Result result) {
+	public LoginController(Result result, UsuarioLogado usuarioLogado, UsuarioDao usuarioDao, Validator validator) {
 		this.result = result;
+		this.usuarioLogado = usuarioLogado;
+		this.usuarioDao = usuarioDao;
+		this.validator = validator;
 	}
 
 	@Path("/index")
