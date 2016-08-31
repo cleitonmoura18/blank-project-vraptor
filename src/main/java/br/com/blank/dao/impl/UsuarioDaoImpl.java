@@ -38,7 +38,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	}
 
 	@Override
-	public Usuario load(String login, String senha) {
+	public Usuario carregar(String login, String senha) {
 		String jpql = "select u from Usuario u where u.login = :login and u.senha = :senha";
 		TypedQuery<Usuario> query = em.createQuery(jpql, Usuario.class);
 		query.setParameter("login", login);

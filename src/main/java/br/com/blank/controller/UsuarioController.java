@@ -4,7 +4,7 @@ import javax.validation.Valid;
 
 import br.com.blank.dao.UsuarioDao;
 import br.com.blank.model.Usuario;
-import br.com.blank.model.UsuarioLogado;
+import br.com.blank.seguranca.UsuarioLogado;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.IncludeParameters;
@@ -35,6 +35,7 @@ public class UsuarioController {
 	
 	@IncludeParameters
 	public void adiciona(@Valid Usuario usuario){
+		
 		validator.onErrorRedirectTo(this).form();
 		result.redirectTo(this).lista();
 	}

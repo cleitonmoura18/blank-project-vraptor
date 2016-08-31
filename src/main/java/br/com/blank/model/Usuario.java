@@ -1,10 +1,15 @@
 package br.com.blank.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -24,6 +29,17 @@ public class Usuario {
 	@Column(nullable = false)
 	private String senha;
 	private boolean desabilitado;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Role> roles;
+	
+	public Usuario(String login, String senha, List<Role> roles) {
+		setLogin(login);
+		setSenha(senha);
+		setRoles(roles);
+	}
+	
+	public Usuario() {}
 	
 	public Long getId() {
 		return id;
@@ -54,6 +70,15 @@ public class Usuario {
 	}
 	public void setDesabilitado(boolean desabilitado) {
 		this.desabilitado = desabilitado;
+	}
+	public List<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+	public String getRole(){
+		return this.roles.get(0).getName();
 	}
 	
 }

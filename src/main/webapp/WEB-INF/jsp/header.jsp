@@ -29,7 +29,7 @@
                 </div>
               
                 <span class="logout-spn" >
-					<a href="#" style="color:#fff;">LOGOUT</a>  
+					<a href="#" style="color:#fff;">SAIR</a>  
                 </span>
             </div>
         </div>
