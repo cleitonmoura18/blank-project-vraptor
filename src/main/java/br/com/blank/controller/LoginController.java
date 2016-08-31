@@ -1,11 +1,16 @@
 package br.com.blank.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import br.com.blank.dao.UsuarioDao;
+import br.com.blank.model.Role;
 import br.com.blank.model.Usuario;
 import br.com.blank.seguranca.Aberto;
 import br.com.blank.seguranca.UsuarioLogado;
+import br.com.blank.util.Util;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
@@ -50,8 +55,11 @@ public class LoginController {
 	@Post
 	public void logar(String login, String senha) {
 		if(login.equals("admin")){
-			usuarioLogado.fazLoginCom(new Usuario("admin", "admin", null));
+			List<Role> roles = new ArrayList<Role>();
+			roles.add(new Role(Util.getADMINISTRADOR()));
+			usuarioLogado.fazLoginCom(new Usuario("admin", "admin", roles));
 			result.redirectTo(this).index();
+			return;
 		}
 		
 		Usuario usuario = usuarioDao.carregar(login, senha);
