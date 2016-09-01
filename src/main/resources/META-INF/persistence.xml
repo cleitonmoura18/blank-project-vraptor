@@ -8,6 +8,7 @@
 	<persistence-unit name="default">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>br.com.blank.model.Usuario</class>
+		<class>br.com.blank.model.Role</class>
 
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />

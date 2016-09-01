@@ -17,6 +17,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.Validator;
+import br.com.caelum.vraptor.view.Results;
 
 @Controller
 public class LoginController {
@@ -49,19 +50,13 @@ public class LoginController {
 	@Aberto
 	@Path("/")
 	public void login() {
+		if(usuarioDao.listAll().size() == 0)
+			result.use(Results.logic()).redirectTo(BootstapController.class).primeiroAcessoAoSistema();
 	}
 	
 	@Aberto
 	@Post
 	public void logar(String login, String senha) {
-		if(login.equals("admin")){
-			List<Role> roles = new ArrayList<Role>();
-			roles.add(new Role(Util.getADMINISTRADOR()));
-			usuarioLogado.fazLoginCom(new Usuario("admin", "admin", roles));
-			result.redirectTo(this).index();
-			return;
-		}
-		
 		Usuario usuario = usuarioDao.carregar(login, senha);
 		if(usuario == null){
 			validator.add(new SimpleMessage("login_invalido", "Login ou senha incorretos!"));
@@ -71,7 +66,6 @@ public class LoginController {
 			result.redirectTo(this).index();
 		}
 			
-		result.redirectTo(LoginController.class).index();
 	}
 	
 	@Aberto

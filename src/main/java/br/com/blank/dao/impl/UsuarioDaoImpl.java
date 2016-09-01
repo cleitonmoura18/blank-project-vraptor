@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 
 import br.com.blank.dao.UsuarioDao;
 import br.com.blank.model.Usuario;
+import br.com.blank.util.Util;
 
 @RequestScoped
 public class UsuarioDaoImpl implements UsuarioDao {
@@ -27,22 +28,13 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	public UsuarioDaoImpl() {
 		this(null);
 	}
-	
-
-	public EntityManager getEm() {
-		return em;
-	}
-
-	public void setEm(EntityManager em) {
-		this.em = em;
-	}
 
 	@Override
 	public Usuario carregar(String login, String senha) {
 		String jpql = "select u from Usuario u where u.login = :login and u.senha = :senha";
 		TypedQuery<Usuario> query = em.createQuery(jpql, Usuario.class);
 		query.setParameter("login", login);
-		query.setParameter("senha", senha);
+		query.setParameter("senha", Util.setMD5Password(senha));
 		return query.getSingleResult();
 	}
 	
@@ -51,6 +43,11 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		String jpql = "select u from Usuario u";
 		TypedQuery<Usuario> query = em.createQuery(jpql, Usuario.class);
 		return query.getResultList();
+	}
+
+	@Override
+	public void salvar(Usuario usuario) {
+		em.persist(usuario);
 	}
 	
 }
