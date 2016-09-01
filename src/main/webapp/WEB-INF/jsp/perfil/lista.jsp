@@ -5,10 +5,10 @@
 <div id="page-inner">
 	<div class="row">
 		<div class="col-lg-12">
-        	<h2>Lista de Usuários</h2>
-			<form id="form" action="<c:url value="/usuario/form" />" method="post">
+        	<h2>Lista de Roles</h2>
+			<form id="form" action="<c:url value="/perfil/form" />" method="post">
 				<p>
-        			<button type="submit" class="btn btn-primary">Novo Usuario</button>
+        			<button type="submit" class="btn btn-primary">Nova Role</button>
         		</p>
         	</form>
         </div>
@@ -17,24 +17,22 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">Usuários</div>
+				<div class="panel-heading">Roles</div>
 					<!-- /.panel-heading -->
                     <div class="panel-body">
                     	<div class="table-responsive">
                         	<table class="table table-striped table-bordered table-hover">
                             	<thead>
                             		<tr>
-                            			<th>Nome</th>
-                                        <th>Login</th>
+                            			<th>Descrição</th>
                                         <th>Ações</th>
                                     </tr>
                                  </thead>
                                  <tbody>
-                                 	<c:forEach items="${usuarios}" var="usuario">
+                                 	<c:forEach items="${roles}" var="role">
 										<tr>
-											<td>${usuario.nome}</td>  
-											<td>${usuario.login}</td>
-											<td><a href="/usuario/edita?item=${usuario.id}">Editar</a></td>
+											<td>${role.name}</td>
+											<td><a href="/perfil/edita?item=${role.name}">Editar</a></td>
 										</tr>
 									</c:forEach>
                                  </tbody>

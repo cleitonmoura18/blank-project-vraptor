@@ -38,29 +38,16 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 					<li class="active-link">
-                        <a href="${linkTo[LoginController].index}" ><i class="fa fa-desktop "></i>Dashboard </a>
+                        <a href="${linkTo[LoginController].index}" ><i class="fa fa-desktop "></i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="${linkTo[UsuarioController].form}"><i class="fa fa-table "></i>Usuário </a>
+                        <a href="${linkTo[UsuarioController].lista}"><i class="fa fa-user "></i>Usuário</a>
                     </li>
                     <li >
-                        <a href="${linkTo[UsuarioController].lista}"><i class="fa fa-edit "></i>Blank Page </a>
+                        <a href="${linkTo[PerfilController].lista}"><i class="fa fa-key "></i>Perfil</a>
                     </li>
 					<li>
                         <a href="#"><i class="fa fa-qrcode "></i>My Link One</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-bar-chart-o"></i>My Link Two</a>
-                    </li>
-
-                    <li>
-                        <a href="#"><i class="fa fa-edit "></i>My Link Three </a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-table "></i>My Link Four</a>
-                    </li>
-                     <li>
-                        <a href="#"><i class="fa fa-edit "></i>My Link Five </a>
                     </li>
                 </ul>
             </div>

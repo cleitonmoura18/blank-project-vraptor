@@ -1,9 +1,11 @@
 package br.com.blank.dao.impl;
 
-import javax.enterprise.context.RequestScoped;
+import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import br.com.blank.dao.PerfilDao;
 import br.com.blank.model.Role;
@@ -34,6 +36,13 @@ public class PerfilDaoImpl implements PerfilDao {
 	@Override
 	public void save(Role role) {
 		em.persist(role);
+	}
+
+	@Override
+	public List<Role> listAll() {
+		String jpql = "select r from Role r";
+		TypedQuery<Role> query = em.createQuery(jpql, Role.class);
+		return query.getResultList();
 	}
 
 }

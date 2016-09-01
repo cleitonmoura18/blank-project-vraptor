@@ -1,5 +1,6 @@
 package br.com.blank.controller;
 
+import javax.inject.Inject;
 import javax.validation.Valid;
 
 import br.com.blank.dao.UsuarioDao;
@@ -18,6 +19,7 @@ public class UsuarioController {
 	private UsuarioDao usuarioDao;
 	private Validator validator;
 	
+	@Inject
 	public UsuarioController(Result result, UsuarioLogado usuarioLogado,
 			UsuarioDao usuarioDao, Validator validator) {
 		super();
@@ -41,11 +43,39 @@ public class UsuarioController {
 	}
 	
 	public void lista(){
-//		List<Usuario> usuarios = usuarioDao.listAll();
-//		result.include("usuarios", usuarios);
+		result.include("usuarios", usuarioDao.listAll());
 	}
 	
 	public void edita(Usuario usuario) {
 		result.of(this).form();
 	}
+
+	public UsuarioLogado getUsuarioLogado() {
+		return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(UsuarioLogado usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
+	}
+
+	public UsuarioDao getUsuarioDao() {
+		return usuarioDao;
+	}
+
+	public void setUsuarioDao(UsuarioDao usuarioDao) {
+		this.usuarioDao = usuarioDao;
+	}
+
+	public Validator getValidator() {
+		return validator;
+	}
+
+	public void setValidator(Validator validator) {
+		this.validator = validator;
+	}
+
+	public Result getResult() {
+		return result;
+	}
+	
 }
