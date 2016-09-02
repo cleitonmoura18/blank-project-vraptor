@@ -16,7 +16,7 @@ public class UsuarioLogado implements Serializable{
 	
 	public void fazLoginCom(Usuario usuario){
 		this.usuario = usuario;
-		this.role = usuario.getRole();
+		this.role = usuario.getRole().getName();
 	}
 	
 	public void desloga() {

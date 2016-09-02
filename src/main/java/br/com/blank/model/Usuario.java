@@ -30,7 +30,7 @@ public class Usuario {
 	private String senha;
 	private boolean desabilitado;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Role> roles;
 	
 	public Usuario(String login, String senha, List<Role> roles) {
@@ -39,7 +39,9 @@ public class Usuario {
 		setRoles(roles);
 	}
 	
-	public Usuario() {}
+	public Usuario() {
+		setSenha(Util.getSENHA_PADRAO());
+	}
 	
 	public Long getId() {
 		return id;
@@ -77,8 +79,8 @@ public class Usuario {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-	public String getRole(){
-		return this.roles.get(0).getName();
+	public Role getRole(){
+		return this.roles.get(0);
 	}
 	
 }

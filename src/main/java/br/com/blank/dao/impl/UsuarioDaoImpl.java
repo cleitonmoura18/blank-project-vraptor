@@ -47,7 +47,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 	@Override
 	public void salvar(Usuario usuario) {
-		em.persist(usuario);
+		em.merge(usuario);
+	}
+
+	@Override
+	public Usuario carregar(Long id) {
+		return em.find(Usuario.class, id);
 	}
 	
 }

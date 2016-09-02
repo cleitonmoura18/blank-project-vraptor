@@ -34,7 +34,9 @@
 										<tr>
 											<td>${usuario.nome}</td>  
 											<td>${usuario.login}</td>
-											<td><a href="/usuario/edita?item=${usuario.id}">Editar</a></td>
+											<td>
+												<a href="<c:url value='/usuario/edita/${usuario.id}'/>"><img title="Editar" src=<c:url value='/img/editar.png' /> /></a>
+											</td>
 										</tr>
 									</c:forEach>
                                  </tbody>
