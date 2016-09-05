@@ -31,7 +31,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 	@Override
 	public Usuario carregar(String login, String senha) {
-		String jpql = "select u from Usuario u where u.login = :login and u.senha = :senha";
+		String jpql = "select u from Usuario u where u.login = :login and u.senha = :senha and u.desabilitado = false ";
 		TypedQuery<Usuario> query = em.createQuery(jpql, Usuario.class);
 		query.setParameter("login", login);
 		query.setParameter("senha", Util.setMD5Password(senha));
@@ -40,7 +40,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	
 	@Override
 	public List<Usuario> listAll() {
-		String jpql = "select u from Usuario u";
+		String jpql = "select u from Usuario u where u.desabilitado = false ";
 		TypedQuery<Usuario> query = em.createQuery(jpql, Usuario.class);
 		return query.getResultList();
 	}

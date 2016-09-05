@@ -26,7 +26,8 @@
                             		<tr>
                             			<th>Nome</th>
                                         <th>Login</th>
-                                        <th>Ações</th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                  </thead>
                                  <tbody>
@@ -35,7 +36,16 @@
 											<td>${usuario.nome}</td>  
 											<td>${usuario.login}</td>
 											<td>
-												<a href="<c:url value='/usuario/edita/${usuario.id}'/>"><img title="Editar" src=<c:url value='/img/editar.png' /> /></a>
+												<form action="${linkTo[UsuarioController].editar(null)}" method="post">
+													<input name="usuario.id" value="${usuario.id}" type="hidden" />
+													<button type="submit" class="btn btn-primary" >Editar</button>
+												</form>
+											</td>
+											<td>
+												<form action="${linkTo[UsuarioController].excluir(null)}" method="post">
+													<input name="usuario.id" value="${usuario.id}" type="hidden" />
+													<button type="submit" class="btn btn-danger" >Excluir</button>
+												</form>
 											</td>
 										</tr>
 									</c:forEach>

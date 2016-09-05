@@ -12,8 +12,10 @@ import br.com.blank.model.Role;
 import br.com.blank.model.Usuario;
 import br.com.blank.seguranca.UsuarioLogado;
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.IncludeParameters;
 import br.com.caelum.vraptor.validator.Validator;
@@ -60,15 +62,24 @@ public class UsuarioController {
 		result.include("usuarios", usuarioDao.listAll());
 	}
 	
-	@Get
-	@Path("/usuario/edita/{usuario.id}")
-	public void edita(Usuario usuario) {
+	@Post
+	public void editar(Usuario usuario) {
 		
 		usuario = usuarioDao.carregar(usuario.getId());
 		result.include("usuario", usuario);
 		result.include("role", usuario.getRole());
 		
 		result.redirectTo(this).form();
+	}
+	
+	@Post
+	public void excluir(Usuario usuario) {
+		
+		usuario = usuarioDao.carregar(usuario.getId());
+		usuario.setDesabilitado(true);
+		usuarioDao.salvar(usuario);
+		
+		result.redirectTo(this).lista();
 	}
 
 	public UsuarioDao getUsuarioDao() {
