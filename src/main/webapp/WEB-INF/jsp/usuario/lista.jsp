@@ -3,9 +3,41 @@
 <c:import url="/WEB-INF/jsp/header.jsp"></c:import>
 
 <div id="page-inner">
+
 	<div class="row">
 		<div class="col-lg-12">
-        	<h2>Lista de Usuários</h2>
+			<h2>LISTA DE USUÁRIOS</h2>
+		</div>
+	</div>
+		
+	<hr />
+		
+	<c:if test="${not empty errors}">
+		<div class="alert alert-error">
+			<c:forEach var="error" items="${errors}"><li>${error.message}</li></c:forEach>
+		</div>
+	</c:if>
+	<c:if test="${not empty erro}">
+		<div class="row">
+			<div class="col-lg-12 ">
+				<div class="alert alert-error">
+					<strong>${erro}</strong>
+				</div>
+			</div>
+		</div>
+	</c:if>
+	<c:if test="${not empty sucesso}">
+		<div class="row">
+			<div class="col-lg-12 ">
+				<div class="alert alert-success">
+					<strong>${sucesso}</strong>
+				</div>
+			</div>
+		</div>
+	</c:if>
+
+	<div class="row">
+		<div class="col-lg-12">
 			<form id="form" action="<c:url value="/usuario/form" />" method="post">
 				<p>
         			<button type="submit" class="btn btn-primary">Novo Usuario</button>

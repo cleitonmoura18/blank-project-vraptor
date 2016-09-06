@@ -20,9 +20,9 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	@NotEmpty
+	@NotEmpty(message="O campo nome é obrigatorio!")
 	private String nome;
-	@NotEmpty
+	@NotEmpty(message="O campo login é obrigatorio!")
 	@Column(nullable = false, unique = true)
 	private String login;
 	@NotEmpty

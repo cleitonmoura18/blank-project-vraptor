@@ -46,15 +46,21 @@ public class UsuarioController {
 		result.include("roles", perfilDao.listAll());
 	}
 	
-	@IncludeParameters
-	public void adiciona(@Valid Usuario usuario, Role role){
+	public void adiciona(Usuario usuario, Role role){
 		validator.onErrorRedirectTo(this).form();
 		
 		List<Role> roles = new ArrayList<Role>();
 		roles.add(perfilDao.carregarRole(role.getName()));
 		usuario.setRoles(roles);
 		
-		usuarioDao.salvar(usuario);
+		try {
+			usuarioDao.salvar(usuario);
+		} catch (Exception e) {
+			result.include("erro", e.getMessage());
+			result.forwardTo(this).editar(usuario);
+		}
+		
+		result.include("sucesso", "Usuário salvo com sucesso!");
 		result.redirectTo(this).lista();
 	}
 	

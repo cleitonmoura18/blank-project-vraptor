@@ -3,9 +3,41 @@
 <c:import url="/WEB-INF/jsp/header.jsp"></c:import>
 
 	<div id="page-inner">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2>USUÁRIO</h2>
+			</div>
+		</div>
+		
+		<hr />
+		
+		<c:if test="${not empty errors}">
+			<div class="alert alert-error">
+				<c:forEach var="error" items="${errors}"><li>${error.message}</li></c:forEach>
+			</div>
+		</c:if>
+		<c:if test="${not empty erro}">
+			<div class="row">
+				<div class="col-lg-12 ">
+					<div class="alert alert-error">
+						<strong>${erro}</strong>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${not empty sucesso}">
+			<div class="row">
+				<div class="col-lg-12 ">
+					<div class="alert alert-success">
+						<strong>${sucesso}</strong>
+					</div>
+				</div>
+			</div>
+		</c:if>
+	
         <div class="row">
             <div class="col-md-12">
-                <h2>Usuário</h2>
+				
 				<form action="${linkTo[UsuarioController].adiciona(null, null)}" method="post">
 					<input type="text" name="usuario.id" id="id" class="form-control" value="${usuario.id}"  style="visibility: hidden;" />
 					<div class="col-lg-10 col-md-10">
