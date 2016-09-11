@@ -46,19 +46,15 @@ public class UsuarioController {
 		result.include("roles", perfilDao.listAll());
 	}
 	
-	public void adiciona(Usuario usuario, Role role){
-		validator.onErrorRedirectTo(this).form();
+	@Post
+	public void salvar(Usuario usuario, Role role){
+		result.on(Exception.class).forwardTo(this).editar(usuario);
 		
 		List<Role> roles = new ArrayList<Role>();
 		roles.add(perfilDao.carregarRole(role.getName()));
 		usuario.setRoles(roles);
 		
-		try {
-			usuarioDao.salvar(usuario);
-		} catch (Exception e) {
-			result.include("erro", e.getMessage());
-			result.forwardTo(this).editar(usuario);
-		}
+		usuarioDao.salvar(usuario);
 		
 		result.include("sucesso", "Usuário salvo com sucesso!");
 		result.redirectTo(this).lista();
@@ -80,11 +76,13 @@ public class UsuarioController {
 	
 	@Post
 	public void excluir(Usuario usuario) {
+		result.on(Exception.class).forwardTo(this).editar(usuario);
 		
 		usuario = usuarioDao.carregar(usuario.getId());
 		usuario.setDesabilitado(true);
 		usuarioDao.salvar(usuario);
 		
+		result.include("sucesso", "Usuário excluído com sucesso!");
 		result.redirectTo(this).lista();
 	}
 

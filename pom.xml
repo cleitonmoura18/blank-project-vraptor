@@ -21,44 +21,29 @@
 		</dependency>
 		
 		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>javax.servlet-api</artifactId>
-		    <version>3.1.0</version>
-		    <scope>provided</scope>
-		</dependency>
-		
-		<!-- <dependency>
-    		<groupId>javax.servlet</groupId>
-    		<artifactId>jsp-api</artifactId>
-    		<version>2.0</version>	
-		</dependency> -->
-
-		
-		<dependency>
 			<groupId>org.jboss.weld.servlet</groupId>
 			<artifactId>weld-servlet-core</artifactId>
 			<version>2.1.2.Final</version>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		
         <dependency>
             <groupId>org.jboss.weld</groupId>
             <artifactId>weld-core-impl</artifactId>
             <version>2.1.2.Final</version>
         </dependency>
-
-		<dependency>
-		    <groupId>javax.el</groupId>
-		    <artifactId>el-api</artifactId>
-		    <version>2.2</version>
-		    <scope>provided</scope>
-		</dependency>
-		
+        
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator-cdi</artifactId>
 			<version>5.1.1.Final</version>
 		</dependency>
-
+        
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
@@ -66,18 +51,39 @@
 			<!-- uncomment this line on app servers -->
 			<!-- <scope>provided</scope> -->
 		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
 		
 		<dependency>
 	         <groupId>org.hibernate</groupId>
 	         <artifactId>hibernate-entitymanager</artifactId>
 	         <version>4.3.6.Final</version>
 	    </dependency>
+        
+		<!-- Postgresql -->
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.1-901-1.jdbc4</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>3.1.0</version>
+		    <scope>provided</scope>
+		</dependency>
+		
+	<!-- <dependency>
+    		<groupId>javax.servlet</groupId>
+    		<artifactId>jsp-api</artifactId>
+    		<version>2.0</version>	
+		</dependency> -->
+
+		<!-- <dependency>
+		    <groupId>javax.el</groupId>
+		    <artifactId>el-api</artifactId>
+		    <version>2.2</version>
+		    <scope>provided</scope>
+		</dependency> -->
 		
 		<dependency>
     		<groupId>br.com.caelum.vraptor</groupId>
@@ -86,12 +92,6 @@
 		</dependency>
 		
 		
-		<!-- Postgresql -->
-		<dependency>
-			<groupId>postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>9.1-901-1.jdbc4</version>
-		</dependency>
 	</dependencies>
 
 	<build>

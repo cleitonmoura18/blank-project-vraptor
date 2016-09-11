@@ -11,21 +11,16 @@
 		
 		<hr />
 		
-		<c:if test="${not empty errors}">
-			<div class="alert alert-error">
-				<c:forEach var="error" items="${errors}"><li>${error.message}</li></c:forEach>
-			</div>
-		</c:if>
-		<c:if test="${not empty erro}">
+		<c:if test="${not empty exception}">
 			<div class="row">
 				<div class="col-lg-12 ">
-					<div class="alert alert-error">
-						<strong>${erro}</strong>
+					<div class="alert alert-danger">
+						<strong> ${exception.message}</strong>
 					</div>
 				</div>
 			</div>
 		</c:if>
-		<c:if test="${not empty sucesso}">
+		<c:if test="${(not empty sucesso) && (empty exception)}">
 			<div class="row">
 				<div class="col-lg-12 ">
 					<div class="alert alert-success">
@@ -38,7 +33,7 @@
         <div class="row">
             <div class="col-md-12">
 				
-				<form action="${linkTo[UsuarioController].adiciona(null, null)}" method="post">
+				<form action="${linkTo[UsuarioController].salvar(null, null)}" method="post">
 					<input type="text" name="usuario.id" id="id" class="form-control" value="${usuario.id}"  style="visibility: hidden;" />
 					<div class="col-lg-10 col-md-10">
                         <div class="form-group">

@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="conf" %>
 
 <c:import url="/WEB-INF/jsp/header.jsp"></c:import>
 
@@ -12,29 +14,24 @@
 		
 	<hr />
 		
-	<c:if test="${not empty errors}">
-		<div class="alert alert-error">
-			<c:forEach var="error" items="${errors}"><li>${error.message}</li></c:forEach>
-		</div>
-	</c:if>
-	<c:if test="${not empty erro}">
-		<div class="row">
-			<div class="col-lg-12 ">
-				<div class="alert alert-error">
-					<strong>${erro}</strong>
+	<c:if test="${not empty exception}">
+			<div class="row">
+				<div class="col-lg-12 ">
+					<div class="alert alert-danger">
+						<strong> ${exception.message}</strong>
+					</div>
 				</div>
 			</div>
-		</div>
-	</c:if>
-	<c:if test="${not empty sucesso}">
-		<div class="row">
-			<div class="col-lg-12 ">
-				<div class="alert alert-success">
-					<strong>${sucesso}</strong>
+		</c:if>
+		<c:if test="${(not empty sucesso) && (empty exception)}">
+			<div class="row">
+				<div class="col-lg-12 ">
+					<div class="alert alert-success">
+						<strong>${sucesso}</strong>
+					</div>
 				</div>
 			</div>
-		</div>
-	</c:if>
+		</c:if>
 
 	<div class="row">
 		<div class="col-lg-12">
@@ -45,7 +42,7 @@
         	</form>
         </div>
     </div>
-	
+   
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
@@ -74,10 +71,11 @@
 												</form>
 											</td>
 											<td>
-												<form action="${linkTo[UsuarioController].excluir(null)}" method="post">
+													<conf:confirmacao id="${usuario.id}" controller="${linkTo[UsuarioController].excluir(null)}" ></conf:confirmacao>
+												<%-- <form action="${linkTo[UsuarioController].excluir(null)}" method="post">
 													<input name="usuario.id" value="${usuario.id}" type="hidden" />
 													<button type="submit" class="btn btn-danger" >Excluir</button>
-												</form>
+												</form> --%>
 											</td>
 										</tr>
 									</c:forEach>

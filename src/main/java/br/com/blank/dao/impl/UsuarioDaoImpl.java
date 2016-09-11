@@ -48,7 +48,6 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Override
 	public void salvar(Usuario usuario) {
 		em.merge(usuario);
-		em.flush();
 	}
 
 	@Override
