@@ -71,11 +71,7 @@
 												</form>
 											</td>
 											<td>
-													<conf:confirmacao id="${usuario.id}" controller="${linkTo[UsuarioController].excluir(null)}" ></conf:confirmacao>
-												<%-- <form action="${linkTo[UsuarioController].excluir(null)}" method="post">
-													<input name="usuario.id" value="${usuario.id}" type="hidden" />
-													<button type="submit" class="btn btn-danger" >Excluir</button>
-												</form> --%>
+												<conf:confirmacao id="${usuario.id}"  name="usuario.id"  controller="${linkTo[UsuarioController].excluir(null)}" ></conf:confirmacao>
 											</td>
 										</tr>
 									</c:forEach>

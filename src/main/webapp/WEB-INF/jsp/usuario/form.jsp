@@ -34,11 +34,11 @@
             <div class="col-md-12">
 				
 				<form action="${linkTo[UsuarioController].salvar(null, null)}" method="post">
-					<input type="text" name="usuario.id" id="id" class="form-control" value="${usuario.id}"  style="visibility: hidden;" />
+					<input type="hidden" name="usuario.id" id="id" class="form-control" value="${usuario.id}" />
 					<div class="col-lg-10 col-md-10">
                         <div class="form-group">
 							<label for="nome">Nome:</label>
-							<input type="text" name="usuario.nome" id="nome" class="form-control" value="${usuario.nome}"/>
+							<input type="text" name="usuario.nome" id="nome" class="form-control text-uppercase" value="${usuario.nome}" />
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">

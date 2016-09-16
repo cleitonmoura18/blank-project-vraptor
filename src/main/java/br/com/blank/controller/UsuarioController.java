@@ -67,10 +67,12 @@ public class UsuarioController {
 	@Post
 	public void editar(Usuario usuario) {
 		
-		usuario = usuarioDao.carregar(usuario.getId());
+		if(usuario.getId() != null)
+			usuario = usuarioDao.carregar(usuario.getId());
 		result.include("usuario", usuario);
 		result.include("role", usuario.getRole());
 		
+		result.on(Exception.class).forwardTo(this).form();
 		result.redirectTo(this).form();
 	}
 	

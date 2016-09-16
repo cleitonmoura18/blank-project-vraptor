@@ -12,13 +12,13 @@ import br.com.caelum.vraptor.jpa.JPATransactionInterceptor;
 import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.view.Results;
 
-//@Intercepts(before = JPATransactionInterceptor.class)
+@Intercepts(before = JPATransactionInterceptor.class)
 public class ExceptionInterceptor{
-	/*
+	
 private final Result result;
 	
 	 
-	 @Deprecated
+	@Deprecated
 	protected ExceptionInterceptor() {
 		this(null);
 	}
@@ -57,5 +57,5 @@ private final Result result;
 	    }
 	    
 	    return errorMessage;
-	}*/
+	}
 }
