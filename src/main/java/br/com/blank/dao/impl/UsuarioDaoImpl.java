@@ -35,7 +35,11 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		TypedQuery<Usuario> query = em.createQuery(jpql, Usuario.class);
 		query.setParameter("login", login);
 		query.setParameter("senha", Util.setMD5Password(senha));
-		return query.getSingleResult();
+		try {
+			return query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 	@Override

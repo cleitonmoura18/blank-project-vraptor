@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%-- <%@ taglib uri="/WEB-INF/tags" prefix="v" %> --%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="v" %>
 <!DOCTYPE html>
 <html>
 
@@ -23,12 +23,10 @@
                     <div class="panel-body">
                     	<form action="${linkTo[LoginController].logar(null, null)}" method="post">
                             <fieldset>
-                            	<!-- <div class="alert alert-info">
-									<strong>
-                            			<v:validationMessage name="login_invalido"></v:validationMessage>
-									</strong>
-								</div> -->
-                                <div class="form-group">
+								<c:forEach var="error" items="${errors}">
+									<v:validationMessage name="login_invalido"></v:validationMessage>
+								</c:forEach>
+								<div class="form-group">
                                     <input class="form-control" placeholder="Login" id="login" name="login" type="text" autofocus>
                                 </div>
                                 <div class="form-group">
