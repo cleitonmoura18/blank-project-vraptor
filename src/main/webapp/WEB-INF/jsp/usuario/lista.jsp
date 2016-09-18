@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="conf" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="m" %>
 
 <c:import url="/WEB-INF/jsp/header.jsp"></c:import>
 
@@ -13,25 +13,13 @@
 	</div>
 		
 	<hr />
-		
+	
 	<c:if test="${not empty exception}">
-			<div class="row">
-				<div class="col-lg-12 ">
-					<div class="alert alert-danger">
-						<strong> ${exception.message}</strong>
-					</div>
-				</div>
-			</div>
-		</c:if>
-		<c:if test="${(not empty sucesso) && (empty exception)}">
-			<div class="row">
-				<div class="col-lg-12 ">
-					<div class="alert alert-success">
-						<strong>${sucesso}</strong>
-					</div>
-				</div>
-			</div>
-		</c:if>
+		<m:exceptionMessage></m:exceptionMessage>
+	</c:if>
+	<c:if test="${not empty sucesso}">
+		<m:sucessoMessage></m:sucessoMessage>
+	</c:if>
 
 	<div class="row">
 		<div class="col-lg-12">
@@ -71,7 +59,7 @@
 												</form>
 											</td>
 											<td>
-												<conf:confirmacao id="${usuario.id}"  name="usuario.id"  controller="${linkTo[UsuarioController].excluir(null)}" ></conf:confirmacao>
+												<m:confirmacao id="${usuario.id}"  name="usuario.id"  controller="${linkTo[UsuarioController].excluir(null)}" ></m:confirmacao>
 											</td>
 										</tr>
 									</c:forEach>
