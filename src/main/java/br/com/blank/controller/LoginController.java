@@ -43,7 +43,7 @@ public class LoginController {
 	}
 	
 	@Aberto
-	@Path("/")
+	@Path(value="/", priority=Path.HIGHEST)
 	public void login() {
 		if(usuarioDao.listAll().size() == 0)
 			result.use(Results.logic()).redirectTo(BootstapController.class).primeiroAcessoAoSistema();
