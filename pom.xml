@@ -85,11 +85,11 @@
 		    <scope>provided</scope>
 		</dependency> -->
 		
-		<dependency>
+		<!-- <dependency>
     		<groupId>br.com.caelum.vraptor</groupId>
     		<artifactId>vraptor-jpa</artifactId>
     		<version>4.0.5</version>
-		</dependency>
+		</dependency> -->
 		
 		
 	</dependencies>
