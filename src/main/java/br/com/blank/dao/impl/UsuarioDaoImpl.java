@@ -1,5 +1,6 @@
 package br.com.blank.dao.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -50,8 +51,13 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	}
 
 	@Override
-	public void salvar(Usuario usuario) {
-		em.merge(usuario);
+	public void salvar(Usuario usuario){
+		em.getTransaction().begin();
+		if(usuario.getId() == null)
+			em.persist(usuario);
+		else
+			em.merge(usuario);
+		em.getTransaction().commit();
 	}
 
 	@Override

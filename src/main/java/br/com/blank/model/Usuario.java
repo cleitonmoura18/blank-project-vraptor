@@ -53,6 +53,8 @@ public class Usuario {
 		return nome;
 	}
 	public void setNome(String nome) {
+		if(Util.isNuloOuVazio(nome))
+			return;
 		this.nome = nome.toUpperCase();
 	}
 	public String getLogin() {

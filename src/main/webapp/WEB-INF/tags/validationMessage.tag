@@ -5,7 +5,7 @@
 </span> --%>
 <div class="row">
 	<div class="col-lg-12 ">
-		<div class="alert alert-danger">
+		<div class="alert alert-warning">
 			<strong>${errors.from(name)}</strong>
 		</div>
 	</div>

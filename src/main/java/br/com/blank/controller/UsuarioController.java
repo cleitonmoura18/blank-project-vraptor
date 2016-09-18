@@ -1,16 +1,20 @@
 package br.com.blank.controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
+
 import br.com.blank.dao.PerfilDao;
 import br.com.blank.dao.UsuarioDao;
 import br.com.blank.model.Role;
 import br.com.blank.model.Usuario;
 import br.com.blank.seguranca.UsuarioLogado;
+import br.com.blank.util.Util;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
@@ -18,6 +22,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.IncludeParameters;
+import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.Validator;
 
 @Controller
@@ -48,16 +53,31 @@ public class UsuarioController {
 	
 	@Post
 	public void salvar(Usuario usuario, Role role){
-		result.on(Exception.class).forwardTo(this).editar(usuario);
 		
+		validaUsuario(usuario);
+		validator.onErrorForwardTo(this).form();
+		adicionaRole(usuario, role);
+		
+		try {
+			usuarioDao.salvar(usuario);
+			result.include("sucesso", "Usuário salvo com sucesso!");
+			result.redirectTo(this).lista();
+		} catch (RuntimeException e) {
+			result.include("erro", Util.exceptionRootCauseMessage(e));
+			result.forwardTo(this).editar(usuario);
+		}
+		
+	}
+
+	private void validaUsuario(Usuario usuario) {
+		validator.addIf(Util.isNuloOuVazio(usuario.getNome()), new SimpleMessage("nome", "Nome Inválido!"));
+		validator.addIf(Util.isNuloOuVazio(usuario.getLogin()), new SimpleMessage("login", "Login Inválido!"));
+	}
+
+	private void adicionaRole(Usuario usuario, Role role) {
 		List<Role> roles = new ArrayList<Role>();
 		roles.add(perfilDao.carregarRole(role.getName()));
 		usuario.setRoles(roles);
-		
-		usuarioDao.salvar(usuario);
-		
-		result.include("sucesso", "Usuário salvo com sucesso!");
-		result.redirectTo(this).lista();
 	}
 	
 	public void lista(){
