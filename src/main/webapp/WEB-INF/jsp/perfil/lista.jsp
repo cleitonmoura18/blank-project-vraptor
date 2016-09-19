@@ -8,7 +8,7 @@
         	<h2>Lista de Roles</h2>
 			<form id="form" action="<c:url value="/perfil/form" />" method="post">
 				<p>
-        			<button type="submit" class="btn btn-primary">Nova Role</button>
+        			<button type="submit" class="btn btn-primary">Novo Perfil</button>
         		</p>
         	</form>
         </div>
@@ -25,14 +25,12 @@
                             	<thead>
                             		<tr>
                             			<th>Descrição</th>
-                                        <th>Ações</th>
                                     </tr>
                                  </thead>
                                  <tbody>
                                  	<c:forEach items="${roles}" var="role">
 										<tr>
 											<td>${role.name}</td>
-											<td><a href="/perfil/edita?item=${role.name}">Editar</a></td>
 										</tr>
 									</c:forEach>
                                  </tbody>

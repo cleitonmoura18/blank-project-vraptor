@@ -52,17 +52,25 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 	@Override
 	public void salvar(Usuario usuario){
-		em.getTransaction().begin();
-		if(usuario.getId() == null)
-			em.persist(usuario);
-		else
+		try {
+			em.getTransaction().begin();
 			em.merge(usuario);
-		em.getTransaction().commit();
+		} finally {
+			em.getTransaction().commit();
+		}
 	}
 
 	@Override
 	public Usuario carregar(Long id) {
 		return em.find(Usuario.class, id);
+	}
+
+	@Override
+	public void desabilitar(Usuario usuario) {
+		usuario.setDesabilitado(true);
+		em.getTransaction().begin();
+		em.merge(usuario);
+		em.getTransaction().commit();
 	}
 	
 }

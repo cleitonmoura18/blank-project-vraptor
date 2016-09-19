@@ -35,7 +35,12 @@ public class PerfilDaoImpl implements PerfilDao {
 
 	@Override
 	public void save(Role role) {
-		em.persist(role);
+		try {
+			em.getTransaction().begin();
+			em.merge(role);
+		} finally {
+			em.getTransaction().commit();
+		}
 	}
 
 	@Override

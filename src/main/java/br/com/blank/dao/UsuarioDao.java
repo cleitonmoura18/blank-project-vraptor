@@ -9,4 +9,5 @@ public interface UsuarioDao {
 	public Usuario carregar(Long id);
 	public List<Usuario> listAll();
 	public void salvar(Usuario usuario);
+	public void desabilitar(Usuario usuario);
 }

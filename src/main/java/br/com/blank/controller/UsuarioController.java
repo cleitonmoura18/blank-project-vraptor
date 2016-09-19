@@ -1,22 +1,16 @@
 package br.com.blank.controller;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.validation.Valid;
-
-import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 
 import br.com.blank.dao.PerfilDao;
 import br.com.blank.dao.UsuarioDao;
 import br.com.blank.model.Role;
 import br.com.blank.model.Usuario;
-import br.com.blank.seguranca.UsuarioLogado;
 import br.com.blank.util.Util;
 import br.com.caelum.vraptor.Controller;
-import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
@@ -52,6 +46,7 @@ public class UsuarioController {
 	}
 	
 	@Post
+	@IncludeParameters
 	public void salvar(Usuario usuario, Role role){
 		
 		validaUsuario(usuario);
@@ -64,7 +59,7 @@ public class UsuarioController {
 			result.redirectTo(this).lista();
 		} catch (RuntimeException e) {
 			result.include("erro", Util.exceptionRootCauseMessage(e));
-			result.forwardTo(this).editar(usuario);
+			result.forwardTo(this).form();
 		}
 		
 	}
@@ -84,28 +79,33 @@ public class UsuarioController {
 		result.include("usuarios", usuarioDao.listAll());
 	}
 	
-	@Post
-	public void editar(Usuario usuario) {
+	@Get
+	@Path("/usuario/{id}")
+	public void editar(Long id) {
 		
-		if(usuario.getId() != null)
-			usuario = usuarioDao.carregar(usuario.getId());
+		validator.addIf(id == null, new SimpleMessage("id", "Usuário não encontrado!"));
+		validator.onErrorForwardTo(this).lista();
+		
+		Usuario usuario = usuarioDao.carregar(id);
 		result.include("usuario", usuario);
 		result.include("role", usuario.getRole());
 		
-		result.on(Exception.class).forwardTo(this).form();
 		result.redirectTo(this).form();
 	}
 	
-	@Post
-	public void excluir(Usuario usuario) {
-		result.on(Exception.class).forwardTo(this).editar(usuario);
+	@Get
+	@Path("/usuario/excluir/{id}")
+	public void excluir(Long id) {
 		
-		usuario = usuarioDao.carregar(usuario.getId());
-		usuario.setDesabilitado(true);
-		usuarioDao.salvar(usuario);
-		
-		result.include("sucesso", "Usuário excluído com sucesso!");
-		result.redirectTo(this).lista();
+		try {
+			Usuario usuario = usuarioDao.carregar(id);
+			usuarioDao.desabilitar(usuario);
+			result.include("sucesso", "Usuário excluído com sucesso!");
+			result.redirectTo(this).lista();
+		} catch (RuntimeException e) {
+			result.include("erro", Util.exceptionRootCauseMessage(e));
+			result.forwardTo(this).lista();
+		}
 	}
 
 	public UsuarioDao getUsuarioDao() {

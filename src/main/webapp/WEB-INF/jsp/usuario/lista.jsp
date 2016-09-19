@@ -14,7 +14,10 @@
 		
 	<hr />
 	
-	<c:if test="${not empty exception}">
+	<c:forEach var="error" items="${errors}">
+		<m:validationMessage name="${error.category}"></m:validationMessage>
+	</c:forEach>
+	<c:if test="${not empty erro}">
 		<m:exceptionMessage></m:exceptionMessage>
 	</c:if>
 	<c:if test="${not empty sucesso}">
@@ -43,8 +46,8 @@
                             		<tr>
                             			<th>Nome</th>
                                         <th>Login</th>
-                                        <th></th>
-                                        <th></th>
+                                        <th>Perfil</th>
+                                        <th>Ações</th>
                                     </tr>
                                  </thead>
                                  <tbody>
@@ -52,14 +55,10 @@
 										<tr>
 											<td>${usuario.nome}</td>  
 											<td>${usuario.login}</td>
+											<td>${usuario.role.name}</td>
 											<td>
-												<form action="${linkTo[UsuarioController].editar(null)}" method="post">
-													<input name="usuario.id" value="${usuario.id}" type="hidden" />
-													<button type="submit" class="btn btn-primary" >Editar</button>
-												</form>
-											</td>
-											<td>
-												<m:confirmacao id="${usuario.id}"  name="usuario.id"  controller="${linkTo[UsuarioController].excluir(null)}" ></m:confirmacao>
+												<a href="${linkTo[UsuarioController].editar(usuario.id)}"  class="btn btn-xs btn-info" >Editar</a>
+												<m:confirmacao id="${usuario.id}"  name="usuario.id"  controller="${linkTo[UsuarioController].excluir(usuario.id)}" ></m:confirmacao>
 											</td>
 										</tr>
 									</c:forEach>

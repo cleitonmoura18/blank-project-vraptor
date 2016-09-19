@@ -4,7 +4,8 @@
 <%@ attribute name="controller" required="true" %>
 
 <!-- <a href="#modal3" role="button" class="btn btn-primary" data-toggle="modal" data-target="#modal3"><i class="icon-trash icon-white"></i></a> -->
-<button type="submit"  onclick="#${id}" role="button" class="btn btn-danger" data-toggle="modal" data-target="#${id}" >Excluir</button>
+<!-- <button type="submit"  onclick="#${id}" role="button" class="btn btn-danger" data-toggle="modal" data-target="#${id}" >Excluir</button> -->
+<a href="#${id}"  class="btn btn-xs btn-danger" data-toggle="modal" data-target="#${id}">Excluir</a>
 
 <div id="${id}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -17,7 +18,7 @@
                 <p>Deseja Excluir o registro?</p>
             </div>
             <div class="modal-footer">
-            	<form action="${controller}" method="post">
+            	<form action="${controller}" method="get">
 					<input name="${name}" value="${id}" type="hidden" />
 					<button type="submit" class="btn btn-danger" >Confirmar</button>
 	                <button type="button" class="btn btn-warning" data-dismiss="modal" aria-hidden="true" >Cancelar</button>
