@@ -22,9 +22,6 @@ public class LoginController {
 	private UsuarioDao usuarioDao;
 	private Validator validator;
 	
-	/**
-	 * @deprecated CDI eyes only
-	 */
 	protected LoginController() {
 		this(null, null, null, null);
 	}
@@ -47,6 +44,8 @@ public class LoginController {
 	public void login() {
 		if(usuarioDao.listAll().size() == 0)
 			result.use(Results.logic()).redirectTo(BootstapController.class).primeiroAcessoAoSistema();
+		if(usuarioLogado.isLogado())
+			result.redirectTo(this).index();
 	}
 	
 	@Aberto
