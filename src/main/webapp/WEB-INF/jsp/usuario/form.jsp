@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="m" %>
 
 <c:import url="/WEB-INF/jsp/header.jsp"></c:import>
 
@@ -11,20 +10,12 @@
 		</div>
 		
 		<hr />
-		<c:forEach var="error" items="${errors}">
-			<m:validationMessage name="${error.category}"></m:validationMessage>
-		</c:forEach>
-		<c:if test="${not empty erro}">
-			<m:exceptionMessage></m:exceptionMessage>
-		</c:if>
-		<c:if test="${not empty sucesso}">
-			<m:sucessoMessage></m:sucessoMessage>
-		</c:if>
+		<c:import url="/WEB-INF/jsp/mensagens.jsp"></c:import>
 	
         <div class="row">
             <div class="col-md-12">
 				
-				<form action="${linkTo[UsuarioController].salvar(null, null)}" method="post">
+				<form action="<c:url value="/usuario/salvar"/>" method="post">
 					<input type="hidden" name="usuario.id" id="id" class="form-control" value="${usuario.id}" />
 					<div class="col-lg-10 col-md-10">
                         <div class="form-group">
@@ -51,10 +42,18 @@
 					
 				<div class="col-lg-8 col-md-8">
                         <div class="form-group">
-                       		<button type="submit" class="btn btn-primary" >Salvar</button>
+                       		<button type="submit" class="btn btn-primary" name="_method" value="POST">Salvar</button>
+                       		<button type="submit" class="btn btn-primary" name="_method" value="PUT">Resetar Senha</button>
                         </div>
                     </div>
 				</form>
+				<%-- <form action="${linkTo[UsuarioController].resetarSenha(null, null)}" method="post">
+					<div class="col-lg-8 col-md-8">
+                        <div class="form-group">
+                       		<button type="submit" class="btn btn-primary" >Salvar</button>
+                        </div>
+                    </div>
+				</form> --%>
             </div>
         </div>
         <hr />

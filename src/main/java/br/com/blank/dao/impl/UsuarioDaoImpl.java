@@ -68,9 +68,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Override
 	public void desabilitar(Usuario usuario) {
 		usuario.setDesabilitado(true);
-		em.getTransaction().begin();
-		em.merge(usuario);
-		em.getTransaction().commit();
+		salvar(usuario);
 	}
 	
 }

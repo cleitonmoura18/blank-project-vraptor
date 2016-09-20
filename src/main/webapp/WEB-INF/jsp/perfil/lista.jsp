@@ -13,6 +13,9 @@
         	</form>
         </div>
     </div>
+    
+    <hr />
+	<c:import url="/WEB-INF/jsp/mensagens.jsp"></c:import>
 	
 	<div class="row">
 		<div class="col-lg-12">

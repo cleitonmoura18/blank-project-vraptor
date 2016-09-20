@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="m" %>
 
 <c:import url="/WEB-INF/jsp/header.jsp"></c:import>
@@ -13,16 +12,7 @@
 	</div>
 		
 	<hr />
-	
-	<c:forEach var="error" items="${errors}">
-		<m:validationMessage name="${error.category}"></m:validationMessage>
-	</c:forEach>
-	<c:if test="${not empty erro}">
-		<m:exceptionMessage></m:exceptionMessage>
-	</c:if>
-	<c:if test="${not empty sucesso}">
-		<m:sucessoMessage></m:sucessoMessage>
-	</c:if>
+	<c:import url="/WEB-INF/jsp/mensagens.jsp"></c:import>
 
 	<div class="row">
 		<div class="col-lg-12">

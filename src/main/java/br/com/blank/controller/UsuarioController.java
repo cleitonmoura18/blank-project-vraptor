@@ -14,6 +14,7 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.IncludeParameters;
 import br.com.caelum.vraptor.validator.SimpleMessage;
@@ -45,9 +46,12 @@ public class UsuarioController {
 		result.include("roles", perfilDao.listAll());
 	}
 	
-	@Post
+	@Post("/usuario/salvar")
 	@IncludeParameters
 	public void salvar(Usuario usuario, Role role){
+		
+		if(Util.isNuloOuVazio(usuario.getSenha()))
+			adicionaSenhaPadrao(usuario);
 		
 		validaUsuario(usuario);
 		validator.onErrorForwardTo(this).form();
@@ -62,6 +66,27 @@ public class UsuarioController {
 			result.forwardTo(this).form();
 		}
 		
+	}
+	
+	@Put("/usuario/salvar")
+	@IncludeParameters
+	public void resetarSenha(Usuario usuario){
+		usuario = usuarioDao.carregar(usuario.getId());
+		adicionaSenhaPadrao(usuario);
+		
+		try {
+			usuarioDao.salvar(usuario);
+			result.include("sucesso", "Senha resetada com sucesso!");
+			result.redirectTo(this).lista();
+		} catch (RuntimeException e) {
+			result.include("erro", Util.exceptionRootCauseMessage(e));
+			result.forwardTo(this).form();
+		}
+		
+	}
+
+	private void adicionaSenhaPadrao(Usuario usuario) {
+		usuario.setSenha(Util.getSENHA_PADRAO());
 	}
 
 	private void validaUsuario(Usuario usuario) {

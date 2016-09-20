@@ -4,8 +4,6 @@
 <html>
 
 <head>
-		<meta charset="utf-8" />
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Blank Project</title>
 		<link href="<c:url value='/css/bootstrap.css'/>" rel="stylesheet"/>
 		<link href="<c:url value='/css/font-awesome.css'/>" rel="stylesheet"/>
@@ -20,10 +18,10 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Login</h3>
+                        <h3 class="panel-title">Alterar Senha</h3>
                     </div>
                     <div class="panel-body">
-                    	<form action="${linkTo[LoginController].logar(null, null)}" method="post">
+                    	<form action="${linkTo[LoginController].alterarSenha(null, null, null, null, null)}" method="post">
                             <fieldset>
 								<c:forEach var="error" items="${errors}">
 									<m:validationMessage name="${error.category}"></m:validationMessage>
@@ -39,6 +37,15 @@
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Senha" id="senha" name="senha" type="password" value="">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Novo Login" id="novoLogin" name="novoLogin" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Nova Senha" id="novaSenha" name="novaSenha" type="password" value="">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Confirme a Senha" id="confirmeSenha" name="confirmeSenha" type="password" value="">
                                 </div>
                                 
                                 <input class="btn btn-lg btn-primary btn-block" type="submit" value="Enviar"/>

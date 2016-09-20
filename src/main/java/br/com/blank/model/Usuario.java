@@ -40,7 +40,6 @@ public class Usuario {
 	}
 	
 	public Usuario() {
-		setSenha(Util.getSENHA_PADRAO());
 	}
 	
 	public Long getId() {

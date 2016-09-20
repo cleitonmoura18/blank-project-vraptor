@@ -14,6 +14,10 @@ public class Util {
 		return SENHA_PADRAO;
 	}
 	
+	public static boolean isSenhaPadrao(String senha) {
+		return SENHA_PADRAO.equals(senha);
+	}
+	
 	public static String getADMINISTRADOR() {
 		return ADMINISTRADOR;
 	}

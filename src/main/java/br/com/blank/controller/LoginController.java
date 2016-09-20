@@ -6,6 +6,7 @@ import br.com.blank.dao.UsuarioDao;
 import br.com.blank.model.Usuario;
 import br.com.blank.seguranca.Aberto;
 import br.com.blank.seguranca.UsuarioLogado;
+import br.com.blank.util.Util;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
@@ -49,17 +50,47 @@ public class LoginController {
 	}
 	
 	@Aberto
+	public void edita() {
+		if(usuarioLogado.isLogado())
+			result.redirectTo(this).index();
+	}
+	
+	@Aberto
 	@Post
 	public void logar(String login, String senha) {
 		Usuario usuario = usuarioDao.carregar(login, senha);
-		if(usuario == null){
-			validator.add(new SimpleMessage("login_invalido", "Login ou senha incorretos!"));
-			validator.onErrorRedirectTo(this).login();
-		} else {
-			usuarioLogado.fazLoginCom(usuario);
-			result.redirectTo(this).index();
+		validator.addIf(usuario == null, new SimpleMessage("login_invalido", "Login ou senha incorretos!"));
+		validator.onErrorRedirectTo(this).login();
+		
+		if(Util.isSenhaPadrao(senha)){
+			result.redirectTo(this).edita();
+			return;
 		}
+		
+		usuarioLogado.fazLoginCom(usuario);
+		result.redirectTo(this).index();
 			
+	}
+	
+	@Aberto
+	@Post
+	public void alterarSenha(String login, String senha, String novoLogin, String novaSenha, String confirmeSenha) {
+		Usuario usuario = usuarioDao.carregar(login, senha);
+		validaAlteracaoDeSenha(novaSenha, confirmeSenha, usuario);
+		validator.onErrorRedirectTo(this).edita();
+		
+		usuario.setLogin(novoLogin);
+		usuario.setSenha(novaSenha);
+		usuarioDao.salvar(usuario);
+		
+		result.include("sucesso", "Senha alterada com sucesso!");
+		result.redirectTo(this).login();
+	}
+
+	private void validaAlteracaoDeSenha(String novaSenha, String confirmeSenha, Usuario usuario) {
+		validator.addIf(usuario == null, new SimpleMessage("login_invalido", "Login ou senha incorretos!"));
+		validator.addIf(Util.isSenhaPadrao(novaSenha), new SimpleMessage("senha_padrao", "A nova senha deser ser diferente da senha atual!"));
+		validator.addIf(!novaSenha.equals(confirmeSenha), new SimpleMessage("nova_senha", "A nova senha incorreta!"));
 	}
 	
 	@Aberto
