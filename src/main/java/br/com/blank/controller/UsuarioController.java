@@ -9,7 +9,11 @@ import br.com.blank.dao.PerfilDao;
 import br.com.blank.dao.UsuarioDao;
 import br.com.blank.model.Role;
 import br.com.blank.model.Usuario;
+import br.com.blank.seguranca.PossuiAcesso;
+import br.com.blank.util.AcessoUtil;
 import br.com.blank.util.Util;
+import br.com.caelum.brutauth.auth.annotations.AccessLevel;
+import br.com.caelum.brutauth.auth.annotations.SimpleBrutauthRules;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -46,6 +50,8 @@ public class UsuarioController {
 		result.include("roles", perfilDao.listAll());
 	}
 	
+	@SimpleBrutauthRules(PossuiAcesso.class)
+    @AccessLevel(AcessoUtil.ADMINISTRADOR)
 	@Post("/usuario/salvar")
 	@IncludeParameters
 	public void salvar(Usuario usuario, Role role){
@@ -86,7 +92,7 @@ public class UsuarioController {
 	}
 
 	private void adicionaSenhaPadrao(Usuario usuario) {
-		usuario.setSenha(Util.getSENHA_PADRAO());
+		usuario.setSenha(AcessoUtil.getSENHA_PADRAO());
 	}
 
 	private void validaUsuario(Usuario usuario) {

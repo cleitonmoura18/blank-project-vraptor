@@ -6,11 +6,11 @@
 	<div class="row">
 		<div class="col-lg-12">
         	<h2>Lista de Roles</h2>
-			<form id="form" action="<c:url value="/perfil/form" />" method="post">
+			<%-- <form id="form" action="<c:url value="/perfil/form" />" method="post">
 				<p>
         			<button type="submit" class="btn btn-primary">Novo Perfil</button>
         		</p>
-        	</form>
+        	</form> --%>
         </div>
     </div>
     

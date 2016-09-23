@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import br.com.blank.util.AcessoUtil;
 import br.com.blank.util.Util;
 
 @Entity
@@ -66,7 +67,7 @@ public class Usuario {
 		return senha;
 	}
 	public void setSenha(String senha) {
-		this.senha = Util.setMD5Password(senha);
+		this.senha = AcessoUtil.setMD5Password(senha);
 	}
 	public boolean isDesabilitado() {
 		return desabilitado;

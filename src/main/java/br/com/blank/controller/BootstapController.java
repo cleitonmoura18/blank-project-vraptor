@@ -10,6 +10,7 @@ import br.com.blank.dao.UsuarioDao;
 import br.com.blank.model.Role;
 import br.com.blank.model.Usuario;
 import br.com.blank.seguranca.Aberto;
+import br.com.blank.util.AcessoUtil;
 import br.com.blank.util.Util;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Result;
@@ -35,29 +36,29 @@ public class BootstapController {
 	@Aberto
 	public void primeiroAcessoAoSistema(){
 		
-		Role roleAdministrador = perfilDao.carregarRole(Util.getADMINISTRADOR());
+		Role roleAdministrador = perfilDao.carregarRole(AcessoUtil.DESC_ADMINISTRADOR);
 		if (roleAdministrador == null) {
 			System.out.println("Criando perfil ADMINISTRADOR");
 			roleAdministrador = new Role();
-			roleAdministrador.setName(Util.getADMINISTRADOR());
+			roleAdministrador.setName(AcessoUtil.DESC_ADMINISTRADOR);
 			perfilDao.save(roleAdministrador);
 			System.out.println("Perfil ADMINISTRADOR criado");
 		}
 		
-		Role roleGerente = perfilDao.carregarRole(Util.getGERENTE());
+		Role roleGerente = perfilDao.carregarRole(AcessoUtil.DESC_GERENTE);
 		if (roleGerente == null) {
 			System.out.println("Criando perfil GERENTE");
 			roleGerente = new Role();
-			roleGerente.setName(Util.getGERENTE());
+			roleGerente.setName(AcessoUtil.DESC_GERENTE);
 			perfilDao.save(roleGerente);
 			System.out.println("Perfil GERENTE criado");
 		}
 		
-		Role roleUsuario = perfilDao.carregarRole(Util.getUSUARIO());
+		Role roleUsuario = perfilDao.carregarRole(AcessoUtil.DESC_USUARIO);
 		if (roleUsuario == null) {
 			System.out.println("Criando perfil USUARIO");
 			roleUsuario = new Role();
-			roleUsuario.setName(Util.getUSUARIO());
+			roleUsuario.setName(AcessoUtil.DESC_USUARIO);
 			perfilDao.save(roleUsuario);
 			System.out.println("Perfil USUARIO criado");
 		}

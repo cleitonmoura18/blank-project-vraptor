@@ -6,6 +6,7 @@ import br.com.blank.dao.UsuarioDao;
 import br.com.blank.model.Usuario;
 import br.com.blank.seguranca.Aberto;
 import br.com.blank.seguranca.UsuarioLogado;
+import br.com.blank.util.AcessoUtil;
 import br.com.blank.util.Util;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
@@ -62,7 +63,7 @@ public class LoginController {
 		validator.addIf(usuario == null, new SimpleMessage("login_invalido", "Login ou senha incorretos!"));
 		validator.onErrorRedirectTo(this).login();
 		
-		if(Util.isSenhaPadrao(senha)){
+		if(AcessoUtil.isSenhaPadrao(senha)){
 			result.redirectTo(this).edita();
 			return;
 		}
@@ -89,7 +90,7 @@ public class LoginController {
 
 	private void validaAlteracaoDeSenha(String novaSenha, String confirmeSenha, Usuario usuario) {
 		validator.addIf(usuario == null, new SimpleMessage("login_invalido", "Login ou senha incorretos!"));
-		validator.addIf(Util.isSenhaPadrao(novaSenha), new SimpleMessage("senha_padrao", "A nova senha deser ser diferente da senha atual!"));
+		validator.addIf(AcessoUtil.isSenhaPadrao(novaSenha), new SimpleMessage("senha_padrao", "A nova senha deser ser diferente da senha atual!"));
 		validator.addIf(!novaSenha.equals(confirmeSenha), new SimpleMessage("nova_senha", "A nova senha incorreta!"));
 	}
 	

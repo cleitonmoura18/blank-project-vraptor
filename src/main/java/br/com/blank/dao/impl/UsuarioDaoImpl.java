@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 
 import br.com.blank.dao.UsuarioDao;
 import br.com.blank.model.Usuario;
+import br.com.blank.util.AcessoUtil;
 import br.com.blank.util.Util;
 
 @RequestScoped
@@ -35,7 +36,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		String jpql = "select u from Usuario u where u.login = :login and u.senha = :senha and u.desabilitado = false ";
 		TypedQuery<Usuario> query = em.createQuery(jpql, Usuario.class);
 		query.setParameter("login", login);
-		query.setParameter("senha", Util.setMD5Password(senha));
+		query.setParameter("senha", AcessoUtil.setMD5Password(senha));
 		try {
 			return query.getSingleResult();
 		} catch (Exception e) {

@@ -6,6 +6,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import br.com.blank.model.Usuario;
+import br.com.blank.util.AcessoUtil;
 
 @Named
 @SessionScoped
@@ -17,6 +18,10 @@ public class UsuarioLogado implements Serializable{
 	public void fazLoginCom(Usuario usuario){
 		this.usuario = usuario;
 		this.role = usuario.getRole().getName();
+	}
+	
+	public boolean isRole(Long key){
+		return AcessoUtil.getKey(getRole()) == key;
 	}
 	
 	public void desloga() {
@@ -33,6 +38,14 @@ public class UsuarioLogado implements Serializable{
 
 	public String getRole() {
 		return role;
+	}
+	
+	public boolean isAdministrador(){
+		return AcessoUtil.getKey(getRole()) == AcessoUtil.ADMINISTRADOR;
+	}
+	
+	public boolean isGerente(){
+		return AcessoUtil.getKey(getRole()) == AcessoUtil.GERENTE;
 	}
 
 	@Override
