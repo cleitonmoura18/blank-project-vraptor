@@ -43,11 +43,13 @@
                     <li>
                         <a href="${linkTo[UsuarioController].lista}"><i class="fa fa-user "></i>Usuário</a>
                     </li>
-                    <li >
-                        <a href="${linkTo[PerfilController].lista}"><i class="fa fa-key "></i>Perfil</a>
-                    </li>
+                    <c:if test="${usuarioLogado.administrador}">
+                    	<li >
+                        	<a href="${linkTo[PerfilController].lista}"><i class="fa fa-key "></i>Perfil</a>
+                    	</li>
+                    </c:if>
 					<li>
-                        <a href="#"><i class="fa fa-qrcode "></i>My Link One</a>
+                        <a href="${linkTo[ExemploController].lista}"><i class="fa fa-list-ul "></i>Exemplo</a>
                     </li>
                 </ul>
             </div>
