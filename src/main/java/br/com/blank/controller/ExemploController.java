@@ -35,15 +35,15 @@ public class ExemploController {
 	
 	@Post("/exemplo/enviar")
 	public void enviarPost(Exemplo exemplo){
-		result.include("sucesso", "Exemplo post enviado!");
-		result.include("erro", "Exemplo post enviado!");
+		result.include("sucesso", "Exemplo "+exemplo.getDescricao()+" post enviado!");
+		result.include("erro", "Exemplo "+exemplo.getDescricao()+" post enviado!");
 		result.redirectTo(this).lista();
 	}
 	
 	@Put("/exemplo/enviar")
 	public void enviarPut(Exemplo exemplo){
-		result.include("sucesso", "Exemplo put enviado!");
-		result.include("erro", "Exemplo put enviado!");
+		result.include("sucesso", "Exemplo "+exemplo.getDescricao()+" put enviado!");
+		result.include("erro", "Exemplo "+exemplo.getDescricao()+" put enviado!");
 		result.redirectTo(this).lista();
 	}
 	

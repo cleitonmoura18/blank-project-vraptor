@@ -8,6 +8,7 @@
 		<link href="<c:url value='/css/bootstrap.css'/>" rel="stylesheet"/>
 		<link href="<c:url value='/css/font-awesome.css'/>" rel="stylesheet"/>
 		<link href="<c:url value='/css/custom.css'/>" rel="stylesheet"/>
+		<link href="<c:url value='/css/jquery-ui.min.css'/>" rel="stylesheet"/>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel="stylesheet"/>
 	</head>
 	
