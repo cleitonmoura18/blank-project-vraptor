@@ -51,3 +51,4 @@
 
 
 <c:import url="/WEB-INF/jsp/footer.jsp"></c:import>
+<script src="/blank/js/dashboard.js"></script>

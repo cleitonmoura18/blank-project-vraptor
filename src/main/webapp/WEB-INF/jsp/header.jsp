@@ -38,18 +38,18 @@
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
-					<li class="active-link">
+					<li id="menu-dashboard">
                         <a href="${linkTo[LoginController].index}" ><i class="fa fa-desktop "></i>Dashboard</a>
                     </li>
-                    <li>
+                    <li id="menu-usuario">
                         <a href="${linkTo[UsuarioController].lista}"><i class="fa fa-user "></i>Usuário</a>
                     </li>
                     <c:if test="${usuarioLogado.administrador}">
-                    	<li >
+                    	<li id="menu-perfil">
                         	<a href="${linkTo[PerfilController].lista}"><i class="fa fa-key "></i>Perfil</a>
                     	</li>
                     </c:if>
-					<li>
+					<li id="menu-exemplo">
                         <a href="${linkTo[ExemploController].lista}"><i class="fa fa-list-ul "></i>Exemplo</a>
                     </li>
                 </ul>

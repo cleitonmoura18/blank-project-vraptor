@@ -48,3 +48,4 @@
       </div>
 </div>
 <c:import url="/WEB-INF/jsp/footer.jsp"></c:import>
+<script src="/blank/js/perfil.js"></script>

@@ -2,6 +2,8 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp"></c:import>
 
+
+
 	<div id="page-inner">
 		<div class="row">
 			<div class="col-lg-12">
@@ -64,3 +66,4 @@
         <hr />
 	</div>
 <c:import url="/WEB-INF/jsp/footer.jsp"></c:import>
+<script src="/blank/js/exemplo.js"></script>
